@@ -51,3 +51,10 @@ Collinearity check is done on the flight plan generated from the A* algorithm. C
 
 After introducing the linearity check, the drone flies smooth and fast.
 
+## Executing the Flight Plan
+The planning algorithm is verified by selecting a few goal locations in GPS coordinates.
+![Setting the start location](./images/image16.png)
+
+![Setting the start location](./images/image17.png)
+
+![](./images/MotionPlanning.gif)

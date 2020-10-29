@@ -22,13 +22,32 @@ By default, The drone always takeoff from the map origin. To make the drone take
 Starting location is changed to the current location, by setting the variable grid_start.
 ![Setting the start location](./images/image4.png)
 
-###Setting the Goal Location
+### Setting the Goal Location
 The flight plan's goal location needs to be mentioned in the GPS coordinate system, but the planning algorithm understands only the map coordinates. GPS coordinates give more flexibility to the user. The goal GPS coordinates are first converted into local coordinates, and then it is converted into map coordinates.
 ![Setting the start location](./images/image5.png)
-
-###Modified A* implementation
+### Modified A* implementation
 I use the A* algorithm to find the path from the start location to the goal location. I have added diagonal motion on the grid to improve the planning. 
 
 Adding the diagonal motion introduces four more actions into the Action class. The cost of the diagonal is taken as sqrt(2).
  ![Setting the start location](./images/image6.png)
+
+Valid_actions method is modified to check the diagonal directions. Grid out of range is checked by the following code snippet.
+ ![Setting the start location](./images/image7.png)
  
+ The following code checks the obstacles in the diagonal direction and removes the valid actions accordingly.
+  ![Setting the start location](./images/image8.png)
+  
+### Collinearity Test
+Collinearity check is done on the flight plan generated from the A* algorithm. Collinearity check removes the unwanted intermediate waypoints and makes the drone fly smoothly. 
+![Setting the start location](./images/image9.png)
+![Setting the start location](./images/image10.png)
+
+##### Waypoints Before Linearity Check
+![Setting the start location](./images/image15.png)
+
+
+##### Waypoints After Linearity Check 
+![Setting the start location](./images/image12.png)
+
+After introducing the linearity check, the drone flies smooth and fast.
+
